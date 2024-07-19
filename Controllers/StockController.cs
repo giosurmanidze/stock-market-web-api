@@ -1,4 +1,6 @@
 using api.Data;
+using api.Dtos.stock;
+using api.Mappers;
 using api.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,6 +11,7 @@ namespace api.Controllers
     public class StockController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+
         public StockController(ApplicationDbContext context)
         {
             _context = context;
@@ -17,7 +20,9 @@ namespace api.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var stocks = _context.Stocks.ToList();
+            var stocks = _context.Stocks.ToList()
+            .Select(s => s.ToStockDto());
+
             return Ok(stocks);
         }
 
@@ -26,10 +31,20 @@ namespace api.Controllers
         {
             var stock = _context.Stocks.Find(id);
 
-            if(stock == null)
+            if (stock == null)
                 return NotFound();
 
-            return Ok(stock);
+            return Ok(stock.ToStockDto());
+        }
+
+        [HttpPost]
+        public IActionResult Create([FromBody] CreateStockRequestDto stockDto)
+        {
+            var stockModel = stockDto.ToStockFromCreateDto();
+            _context.Stocks.Add(stockModel);
+            _context.SaveChanges();
+
+            return CreatedAtAction(nameof(GetById), new { id = stockModel.Id }, stockModel.ToStockDto());
         }
 
     }
