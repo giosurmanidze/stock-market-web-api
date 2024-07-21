@@ -136,3 +136,7 @@
 /home/giorgi/Devs/Stock-Market-Web-APi/api/obj/Debug/net8.0/api.pdb
 /home/giorgi/Devs/Stock-Market-Web-APi/api/obj/Debug/net8.0/api.genruntimeconfig.cache
 /home/giorgi/Devs/Stock-Market-Web-APi/api/obj/Debug/net8.0/ref/api.dll
+/home/giorgi/Devs/Stock-Market-Web-APi/api/bin/Debug/net8.0/Microsoft.AspNetCore.JsonPatch.dll
+/home/giorgi/Devs/Stock-Market-Web-APi/api/bin/Debug/net8.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+/home/giorgi/Devs/Stock-Market-Web-APi/api/bin/Debug/net8.0/Newtonsoft.Json.dll
+/home/giorgi/Devs/Stock-Market-Web-APi/api/bin/Debug/net8.0/Newtonsoft.Json.Bson.dll
