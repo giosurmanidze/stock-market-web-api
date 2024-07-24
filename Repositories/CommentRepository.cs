@@ -33,19 +33,19 @@ namespace api.Repositories
             return commentModel;
         }
 
-        public async Task<Comment?> UpdateAsync(int id, UpdateCommentRequestDto commnetDto)
+        public async Task<Comment?> UpdateAsync(int id, Comment commnetModel)
         {
-            var commentModel = await _context.Comments.FirstOrDefaultAsync(c => c.Id == id);
+            var existingComment = await _context.Comments.FindAsync(id);
 
-            if (commentModel == null)
+            if (existingComment == null)
                 return null;
 
-            commentModel.Content = commnetDto.Content;
-            commentModel.Title = commnetDto.Title;
+            existingComment.Content = commnetModel.Content;
+            existingComment.Title = commnetModel.Title;
 
             await _context.SaveChangesAsync();
 
-            return commentModel;
+            return existingComment;
         }
 
         public async Task<Comment?> DeleteAsync(int id)
